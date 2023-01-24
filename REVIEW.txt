@@ -1,0 +1,30 @@
+Program.cs:
+
+L3 Wiele niewykorzystanych importów
+L7 Main nie ma wskazanego modyfikatoru widoczności, lepiej private
+L12 Niewykorzystany argument args, można skorzystać z Main bez argumentów
+L15 dataa.csv zamiast data.csv
+
+DataReader.cs:
+
+L12 Logika klasy potrzebuje zapis do listy ImportedObjects, a także iteruje się po liście kilka razy, dlatego nie ma sensu korzystać z IEnumerable. Można użyć IList, lub poprostu List
+L12 Nie ma wskazanego modyfikatoru widoczności
+L14 Argument printData nie wykorzystany
+L16 Na liście nie powinien leżeć pusty element, złamie logikę klasy później (NullReferenceException)
+L18 Zamiast StreamReader i ReadLine lepiej skorzystać z File.ReadLines
+L27 Błąd logiki, musi być < zamiast <=
+L27 Index i nie jest wykorzystany otdzielnie, lepiej zamienić for na foreach
+L32 values może mieć zamało elementów, trzeba sprawdzać ilość elementów
+L39 Cast nie będzie potrzebien, jeżeli będzie prawidłowy typ dla ImportedObjects
+L45 Całą łogikę tego foreach można dużo lepiej zaimplementować w pierwszym loopie (np za pomocą LINQ na arraju values
+L53 Nie ma sensu korzystać z LINQ funkcji Count() jeżeli ImportedObjects ma prawidłowy typ
+L53 Patrz komentarz do L27 odnośnie indexu i
+L55 ToArray powodowałby allokację nowego arraju przy każdej iteracji, nie potrzebien kiedy ImportedObjects ma prawydłowy typ
+L58, L60 Nested if'y psują czytelność kodu, dużo lepiej je zinvertovac (if (.. != ..) continue;), i ewentualnie umieścić w jeden if
+L62 Zamienić na ++
+L70, L77, L79, L86, L88 Patrz komentaż L58 odnośnie ifów
+L100 Console.ReadLine dla pauzy po wykonaniu applikacji nie wchodzi w obowiązki klasy DataReader, lepiej przenieść do Program.cs
+L106 Usuń property Name, takie same istnieje w ImportedObjectBaseClass
+L111, L113, L122 Inconsistent properties w klasie, jak już korzysta się z auto properties, to lepiej wtedy każde pole zrobić auto property
+
+Jabym ten review zrobił jako PR na GitHubie do pustego brancha w moim forku, ale jak jest napisane zrobić w formie tekstowej, to zrobiłem tak :D
